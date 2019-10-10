@@ -27,13 +27,13 @@
                     <div class="form-group">
                         <label for="name" class="col-sm-offset-2 col-sm-2 control-label">账号</label>
                         <div class="col-sm-5">
-                            <input type="text" class="form-control" id="name" placeholder="请输您的入账号">
+                            <input type="text" class="form-control" id="name" name="username" placeholder="请输您的入账号">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="password" class="col-sm-offset-2 col-sm-2 control-label">密码</label>
                         <div class="col-sm-5">
-                            <input type="password" class="form-control" id="password" placeholder="请输入您的密码">
+                            <input type="password" class="form-control" name="password" id="password" placeholder="请输入您的密码">
                         </div>
                     </div>
                     <div class="form-group">
@@ -57,6 +57,36 @@
             $('#myModal').modal('show') //显示模态框
         })
 
+    });
+
+    //登陆方法 当前不包含验证
+    $("#submitBtn").click(function () {
+     var username=$("input[name='username']").val();
+     var password=$("input[name='password']").val();
+     var postData=new Object();
+     postData.username=username;
+     postData.password=password;
+        $.ajax({
+            //请求方式
+            type : "POST",
+            //请求的媒体类型
+            contentType: "application/json;charset=UTF-8",
+            //请求地址
+            url : "http://127.0.0.1:8080/login",
+            //数据，json字符串
+            data : JSON.stringify(postData),
+            //请求成功
+            success : function(result) {
+                console.log(result);
+                //跳转到成功页面
+                
+            },
+            //请求失败，包含具体的错误信息
+            error : function(e){
+                console.log(e.status);
+                console.log(e.responseText);
+            }
+        });
     });
 </script>
 更多模板：<a href="http://www.mycodes.net/" target="_blank">源码之家</a>

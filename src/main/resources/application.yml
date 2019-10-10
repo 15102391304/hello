@@ -4,10 +4,20 @@ spring:
     url: jdbc:mysql://localhost/user?characterEncoding=utf-8&useSSl=false
     username: root
     password: root
-
+  redis:
+    host: 127.0.0.1
+    password: Init1234
+    timeout: 3000
+    port: 6379
+    lettuce:
+      pool:
+        max-idle: 100
+        min-idle: 1
+        max-active: 1000
+        max-wait: -1ms
 
 mybatis:
   mapper-locations: classpath:/*.xml
-  type-aliases-package: com.example.bootsecurity.modul
+  type-aliases-package: com.example.bootsecurity.model
 
 

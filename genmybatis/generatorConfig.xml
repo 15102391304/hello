@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2017. 好砼快车
+  ~ 上海金眼睛信息技术有限公司
+  -->
+
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+    "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+
+<generatorConfiguration>
+    <context id="DefualtJava5" targetRuntime="MyBatis3" defaultModelType="flat">
+        <property name="suppressTypeWarnings" value="true"/>
+        <property name="javaFileEncoding" value="UTF-8"/>
+
+        <property name="javaFormatter" value="org.mybatis.generator.api.dom.DefaultJavaFormatter"/>
+        <property name="xmlFormatter" value="org.mybatis.generator.api.dom.DefaultXmlFormatter"/>
+        <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin"/>
+        <plugin type="org.mybatis.generator.plugins.RenameExampleClassPlugin"/>
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
+        <plugin type="org.mybatis.generator.plugins.CaseInsensitiveLikePlugin">
+            <property name="searchString" value="Example$"/>
+            <property name="replaceString" value="Critera"/>
+        </plugin>
+
+        <!--查询一条数据-->
+        <plugin type="com.example.bootsecurity.mapper.genmybatis.SelectOnePlugin"></plugin>
+
+        <!--逻辑删除-->
+        <plugin type="com.example.bootsecurity.mapper.genmybatis.MybatisDelPlugin">
+            <property name="delColumn" value="deleted"/>
+            <!--无效,已经被删除-->
+            <property name="invalid" value="1"/>
+            <!--有效-->
+            <property name="valid" value="0"/>
+        </plugin>
+        <!--批量插入,支持mysql  oracle  sqlserver-->
+        <plugin type="com.example.bootsecurity.mapper.genmybatis.BatchInsertPlugin">
+            <property name="DB_TYPE" value="mysql"/>
+        </plugin>
+
+        <plugin type="org.mybatis.generator.plugins.MapperConfigPlugin">
+            <property name="targetPackage" value="config"/>
+            <property name="targetProject" value="resource"/>
+        </plugin>
+
+        <!--实体类中文注释-->
+        <commentGenerator type="com.example.bootsecurity.mapper.genmybatis.SimpleCommentGenerator">
+            <property name="suppressAllComments" value="false"/>
+            <property name="addRemarkComments" value="true"/>
+            <property name="suppressDate" value="false"/>
+        </commentGenerator>
+
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://127.0.0.1:3306/user?characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull&amp;tinyInt1isBit=false&amp;useSSL=false&amp;nullCatalogMeansCurrent=true"
+                        userId="root"
+                        password="root">
+            <property name="remarksReporting" value="true"></property>
+        </jdbcConnection>
+
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="true"/>
+        </javaTypeResolver>
+
+        <javaModelGenerator targetPackage="com.example.bootsecurity.model" targetProject="src/main/java">
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+        <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources">
+        </sqlMapGenerator>
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.example.bootsecurity.mapper"
+                             targetProject="src/main/java">
+        </javaClientGenerator>
+
+
+
+       <table tableName="user"  domainObjectName="User" enableCountByExample="true"
+               enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true"
+               selectByExampleQueryId="true">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+            <columnOverride column="deleted" javaType="java.lang.Boolean" />
+        </table>
+
+        <!--<table tableName="workstream_member"  domainObjectName="WorkstreamMember" enableCountByExample="true"
+               enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true"
+               selectByExampleQueryId="true">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="workstream_member_id" sqlStatement="Mysql" identity="true"/>
+            <columnOverride column="deleted" javaType="java.lang.Boolean" />
+        </table>-->
+
+        <!--<table tableName="dashboard"  domainObjectName="Dashboard" enableCountByExample="true"
+               enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true"
+               selectByExampleQueryId="true">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="dashboard_id" sqlStatement="Mysql" identity="true"/>
+            <columnOverride column="deleted" javaType="java.lang.Boolean" />
+        </table>-->
+       <!-- <table tableName="dashboard_widget"  domainObjectName="DashboardWidget" enableCountByExample="true"
+               enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true"
+               selectByExampleQueryId="true">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="dashboard_widget_id" sqlStatement="Mysql" identity="true"/>
+            <columnOverride column="deleted" javaType="java.lang.Boolean" />
+        </table>-->
+
+      <!--  <table tableName="discussion_file_info"  domainObjectName="DiscussionFileInfo" enableCountByExample="true"
+               enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true"
+               selectByExampleQueryId="true">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="discussion_file_info_id" sqlStatement="Mysql" identity="true"/>
+            <columnOverride column="deleted" javaType="java.lang.Boolean" />
+        </table>
+
+        <table tableName="file_info"  domainObjectName="FileInfo" enableCountByExample="true"
+               enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true"
+               selectByExampleQueryId="true">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="file_info_id" sqlStatement="Mysql" identity="true"/>
+            <columnOverride column="deleted" javaType="java.lang.Boolean" />
+        </table>-->
+<!--
+        <table tableName="project_info"  domainObjectName="ProjectInfo" enableCountByExample="true"
+               enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true"
+               selectByExampleQueryId="true">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="project_id" sqlStatement="Mysql" identity="true"/>
+            <columnOverride column="deleted" javaType="java.lang.Boolean" />
+        </table>-->
+
+     <!--   <table tableName="project_member"  domainObjectName="ProjectMember" enableCountByExample="true"
+               enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true"
+               selectByExampleQueryId="true">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="project_member_id" sqlStatement="Mysql" identity="true"/>
+            <columnOverride column="deleted" javaType="java.lang.Boolean" />
+        </table>
+
+        <table tableName="sys_operlog"  domainObjectName="SysOperlog" enableCountByExample="true"
+               enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true"
+               selectByExampleQueryId="true">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="sys_operlog_id" sqlStatement="Mysql" identity="true"/>
+            <columnOverride column="deleted" javaType="java.lang.Boolean" />
+        </table>
+        <table tableName="user_profile"  domainObjectName="UserProfile" enableCountByExample="true"
+               enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true"
+               selectByExampleQueryId="true">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="user_profile_id" sqlStatement="Mysql" identity="true"/>
+            <columnOverride column="deleted" javaType="java.lang.Boolean" />
+        </table>-->
+
+     <!--  <table tableName="work_item_action"  domainObjectName="WorkItemAction" enableCountByExample="true"
+               enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true"
+               selectByExampleQueryId="true">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="work_item_action_id" sqlStatement="Mysql" identity="true"/>
+            <columnOverride column="deleted" javaType="java.lang.Boolean" />
+        </table>-->
+        <!--
+               <table tableName="work_item_activity"  domainObjectName="WorkItemActivity" enableCountByExample="true"
+                      enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true"
+                      selectByExampleQueryId="true">
+                   <property name="useActualColumnNames" value="false"/>
+                   <generatedKey column="work_item_activity_id" sqlStatement="Mysql" identity="true"/>
+                   <columnOverride column="deleted" javaType="java.lang.Boolean" />
+               </table>
+               <table tableName="work_item_dependency"  domainObjectName="WorkItemDependency" enableCountByExample="true"
+                      enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true"
+                      selectByExampleQueryId="true">
+                   <property name="useActualColumnNames" value="false"/>
+                   <generatedKey column="work_item_dependency_id" sqlStatement="Mysql" identity="true"/>
+                   <columnOverride column="deleted" javaType="java.lang.Boolean" />
+               </table>-->
+
+      <!--  <table tableName="work_item_description"  domainObjectName="WorkItemDescription" enableCountByExample="true"
+               enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true"
+               selectByExampleQueryId="true">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="work_item_description_id" sqlStatement="Mysql" identity="true"/>
+            <columnOverride column="deleted" javaType="java.lang.Boolean" />
+        </table>-->
+<!--
+        <table tableName="work_item_discussion"  domainObjectName="WorkItemDiscussion" enableCountByExample="true"
+               enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true"
+               selectByExampleQueryId="true">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="work_item_discussion_id" sqlStatement="Mysql" identity="true"/>
+            <columnOverride column="deleted" javaType="java.lang.Boolean" />
+        </table>-->
+       <!-- <table tableName="work_item_file_info_log"  domainObjectName="WorkItemFileInfoLog" enableCountByExample="true"
+               enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true"
+               selectByExampleQueryId="true">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="work_item_file_log_id" sqlStatement="Mysql" identity="true"/>
+            <columnOverride column="deleted" javaType="java.lang.Boolean" />
+        </table>
+-->
+     <!--   <table tableName="work_item_file_info"  domainObjectName="WorkItemFileInfo" enableCountByExample="true"
+               enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true"
+               selectByExampleQueryId="true">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="work_item_file_info_id" sqlStatement="Mysql" identity="true"/>
+            <columnOverride column="deleted" javaType="java.lang.Boolean" />
+        </table>-->
+
+      <!--  <table tableName="work_item_issue"  domainObjectName="WorkItemIssue" enableCountByExample="true"
+               enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true"
+               selectByExampleQueryId="true">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="work_item_issue_id" sqlStatement="Mysql" identity="true"/>
+            <columnOverride column="deleted" javaType="java.lang.Boolean" />
+        </table>-->
+<!--
+        <table tableName="work_item_responsible_person"  domainObjectName="WorkItemResponsiblePerson" enableCountByExample="true"
+               enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true"
+               selectByExampleQueryId="true">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="work_item_resbperson_id" sqlStatement="Mysql" identity="true"/>
+            <columnOverride column="deleted" javaType="java.lang.Boolean" />
+        </table>-->
+     <!--   <table tableName="work_item_warning"  domainObjectName="WorkItemWarning" enableCountByExample="true"
+               enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true"
+               selectByExampleQueryId="true">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="work_item_warning_id" sqlStatement="Mysql" identity="true"/>
+            <columnOverride column="deleted" javaType="java.lang.Boolean" />
+        </table>-->
+
+   <!--   <table tableName="data_user_role_xref"  domainObjectName="DataUserRoleXref" enableCountByExample="true"
+               enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true"
+               selectByExampleQueryId="true">
+            <property name="useActualColumnNames" value="false"/>
+          <generatedKey column="data_user_role_xref_id" sqlStatement="Mysql" identity="true"/>
+        </table>-->
+     <!--   <table tableName="bulletin"  domainObjectName="Bulletin" enableCountByExample="true"
+               enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true"
+               selectByExampleQueryId="true">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="bulletin_id" sqlStatement="Mysql" identity="true"/>
+            <columnOverride column="deleted" javaType="java.lang.Boolean" />
+        </table>-->
+
+    <!--    <table tableName="bulletin_history"  domainObjectName="BulletinHistory" enableCountByExample="true"
+               enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true"
+               selectByExampleQueryId="true">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="bulletin_history_id" sqlStatement="Mysql" identity="true"/>
+            <columnOverride column="deleted" javaType="java.lang.Boolean" />
+        </table>-->
+
+      <!--  <table tableName="bulletin_read_log"  domainObjectName="BulletinReadLog" enableCountByExample="true"
+               enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true"
+               selectByExampleQueryId="true">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="read_log_id" sqlStatement="Mysql" identity="true"/>
+        </table>-->
+
+    </context>
+</generatorConfiguration>
